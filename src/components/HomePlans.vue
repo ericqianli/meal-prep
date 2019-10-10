@@ -35,6 +35,16 @@
                             </div>
                         </div>
                     </v-card-title>
+
+                    <v-card-actions v-if="$route.name === 'menu'">
+                        <v-btn
+                            outlined
+                            block
+                            color="green"
+                            @click="showRecipes('keto')"
+                            >Select This Plan</v-btn
+                        >
+                    </v-card-actions>
                 </v-card>
             </v-flex>
 
@@ -66,6 +76,15 @@
                             </div>
                         </div>
                     </v-card-title>
+                    <v-card-actions v-if="$route.name === 'menu'">
+                        <v-btn
+                            outlined
+                            block
+                            color="green"
+                            @click="showRecipes('paleo')"
+                            >Select This Plan</v-btn
+                        >
+                    </v-card-actions>
                 </v-card>
             </v-flex>
 
@@ -97,6 +116,15 @@
                             </div>
                         </div>
                     </v-card-title>
+                    <v-card-actions v-if="$route.name === 'menu'">
+                        <v-btn
+                            outlined
+                            block
+                            color="green"
+                            @click="showRecipes('vegan')"
+                            >Select This Plan</v-btn
+                        >
+                    </v-card-actions>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -105,7 +133,17 @@
 
 <script>
 export default {
-    name: "HomePlans"
+    name: "HomePlans",
+    data() {
+        return {
+            recipes: []
+        };
+    },
+    methods: {
+        showRecipes(plan) {
+            this.$store.dispatch("getRecipes", plan);
+        }
+    }
 };
 </script>
 
